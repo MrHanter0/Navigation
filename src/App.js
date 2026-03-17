@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
+import { SalonProvider } from './Context/SalonContext';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import Appointments from './Pages/Appointments';
+import CreateAppointment from './Pages/CreateAppointment';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <SalonProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/appointments" element={<Appointments />} />
+            <Route path="/create-appointment" element={<CreateAppointment />} />
+            <Route path="/" element={<Navigate to="/login" />} />
+          </Routes>
+        </div>
+      </Router>
+    </SalonProvider>
   );
 }
 
